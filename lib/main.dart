@@ -1,3 +1,4 @@
+import 'package:fishing_sensei/login/screens/base_login_screen.dart';
 import 'package:fishing_sensei/theme.dart';
 import 'package:fishing_sensei/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         textTheme: appTextTheme,
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const LoginScreen(),
     );
   }
 }
