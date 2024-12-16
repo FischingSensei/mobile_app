@@ -12,7 +12,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-
   void _login() {
     setState(() {
       debugPrint("Login button");
@@ -29,12 +28,18 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GradientBackground(
-        child: Center(
-          child: Row(
+        child: Align(
+          alignment: const Alignment(0, .2),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               LoginButton(
                 onPressed: _login,
                 child: const Text("Login")
+              ),
+              const SizedBox(
+                height: 24,
               ),
               LoginButton(
                 onPressed: _register,
@@ -46,5 +51,4 @@ class _LoginScreenState extends State<LoginScreen> {
       )
     );
   }
-
 }

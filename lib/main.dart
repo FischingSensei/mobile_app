@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         textTheme: appTextTheme,
+        elevatedButtonTheme: loginButtonTheme,
         useMaterial3: true,
       ),
       home: const LoginScreen(),

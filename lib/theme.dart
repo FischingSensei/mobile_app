@@ -1,11 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const TextTheme appTextTheme = TextTheme(
   bodyMedium: TextStyle(
     color: Colors.white,
-  )
+  ),
+  bodySmall: TextStyle(
+    color: Colors.black
+  ),
 );
 
-const ButtonThemeData loginButtonTheme = ButtonThemeData(
+const ElevatedButtonThemeData loginButtonTheme = ElevatedButtonThemeData(
+  style: ButtonStyle(
+    backgroundColor: WidgetStatePropertyAll(Colors.grey),
+  )
 );
