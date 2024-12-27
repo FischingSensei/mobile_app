@@ -1,3 +1,4 @@
+import 'package:fishing_sensei/login/widgets/background_animation_wave_widget.dart';
 import 'package:fishing_sensei/login/widgets/login_button_widget.dart';
 import 'package:fishing_sensei/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +29,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GradientBackground(
-        child: Align(
-          alignment: const Alignment(0, .2),
-          child: Column(
+        child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const BackgroundAnimation(),
               LoginButton(
                 onPressed: _login,
                 child: const Text("Login")
@@ -47,7 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
               )
             ],
           ),
-        ),
       )
     );
   }

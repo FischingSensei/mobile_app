@@ -24,7 +24,7 @@ class _LoginButtonState extends State<LoginButton>
     // Initialize AnimationController
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 1),
     );
 
     // Define the scaling animation
