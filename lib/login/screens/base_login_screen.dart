@@ -1,3 +1,4 @@
+import 'package:fishing_sensei/login/service/login_service.dart';
 import 'package:fishing_sensei/login/widgets/background_animation_wave_widget.dart';
 import 'package:fishing_sensei/login/widgets/login_button_widget.dart';
 import 'package:fishing_sensei/login/widgets/login_form_widget.dart';
@@ -17,11 +18,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _showLoginForm = false;
   bool _showRegisterForm = false;
+  bool _sendButton = false;
 
   void _login() {
     setState(() {
       _showLoginForm = true;
       _showRegisterForm = false;
+      _sendButton = true;
       debugPrint("Login button");
     });
   }
@@ -30,13 +33,76 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _showLoginForm = false;
       _showRegisterForm = true;
+      _sendButton = true;
       debugPrint("Register");
     });
   }
 
-  void _sendData() {
-    setState(() {
-    });
+  void _sendData() async {
+    if (!_showLoginForm) {
+      await LoginService.fetchUsers();
+    }
+    setState(() {});
+  }
+
+  List<Widget> _displayLoginButton() {
+    return [
+      ConstrainedBox(
+        constraints: const BoxConstraints(
+          minWidth: 100,
+          maxWidth: 100
+        ),
+        child: LoginButton(
+          onPressed: _login,
+          child: const Text("Login")
+        ),
+      ),
+      const SizedBox(
+        width: 24,
+      ),
+      if (_sendButton) ...[
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+              minWidth: 100,
+              maxWidth: 100
+          ),
+          child: LoginButton(
+              onPressed: _sendData,
+              child: const Text("Send")
+          )
+        )
+      ]
+    ];
+  }
+
+  List<Widget> _displayRegisterButton() {
+    return [
+      ConstrainedBox(
+        constraints: const BoxConstraints(
+          minWidth: 100,
+          maxWidth: 200
+        ),
+        child: LoginButton(
+          onPressed: _register,
+          child: const Text("Register")
+        )
+      ),
+      const SizedBox(
+        width: 24,
+      ),
+      if (_sendButton) ...[
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            minWidth: 100,
+            maxWidth: 200
+          ),
+          child: LoginButton(
+            onPressed: _sendData,
+            child: const Text("Send")
+          )
+        )
+      ]
+    ];
   }
 
   @override
@@ -53,35 +119,16 @@ class _LoginScreenState extends State<LoginScreen> {
               if (!_showLoginForm) ...[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: 100
-                      ),
-                      child: LoginButton(
-                        onPressed: _login,
-                        child: const Text("Login")
-                      ),
-                    ),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: 100
-                      ),
-                      child: LoginButton(
-                        onPressed: _sendData,
-                        child: const Text("Send")
-                      )
-                    )
-                  ],
+                  children: _displayLoginButton(),
                 )
               ],
               const SizedBox(
                 height: 24,
               ),
               if (!_showRegisterForm) ...[
-                LoginButton(
-                  onPressed: _register,
-                  child: const Text("Register")
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _displayRegisterButton()
                 )
               ],
             ]
