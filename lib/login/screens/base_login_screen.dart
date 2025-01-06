@@ -1,5 +1,7 @@
 import 'package:fishing_sensei/login/widgets/background_animation_wave_widget.dart';
 import 'package:fishing_sensei/login/widgets/login_button_widget.dart';
+import 'package:fishing_sensei/login/widgets/login_form_widget.dart';
+import 'package:fishing_sensei/login/widgets/register_form_widget.dart';
 import 'package:fishing_sensei/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //const BackgroundAnimation() [TODO] Sinwave animation,
+              if (_showLoginForm) const LoginForm(),
+              if (_showRegisterForm) const RegisterForm(),
               if (!_showLoginForm) ...[
                 LoginButton(
                   onPressed: _login,
@@ -55,8 +59,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: _register,
                   child: const Text("Register")
                 )
-              ]
-            ],
+              ],
+            ]
           ),
       )
     );
