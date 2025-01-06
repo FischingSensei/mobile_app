@@ -34,6 +34,11 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+  void _sendData() {
+    setState(() {
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,14 +47,33 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              //const BackgroundAnimation() [TODO] Sinwave animation,
+              //const BackgroundAnimation() [TODO] Sinwave animation
               if (_showLoginForm) const LoginForm(),
               if (_showRegisterForm) const RegisterForm(),
               if (!_showLoginForm) ...[
-                LoginButton(
-                  onPressed: _login,
-                  child: const Text("Login")
-                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: 100
+                      ),
+                      child: LoginButton(
+                        onPressed: _login,
+                        child: const Text("Login")
+                      ),
+                    ),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: 100
+                      ),
+                      child: LoginButton(
+                        onPressed: _sendData,
+                        child: const Text("Send")
+                      )
+                    )
+                  ],
+                )
               ],
               const SizedBox(
                 height: 24,
