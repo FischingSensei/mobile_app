@@ -38,14 +38,14 @@ class _BackgroundAnimationState extends State<BackgroundAnimation>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-    animation: _waveAnimation,
-    builder: (context, child) {
-      return CustomPaint(
-          painter: SinPainter(_waveAnimation),
-          child: Container()
-      );
-    },
+      animation: _waveAnimation,
+      builder: (context, child) {
+        return CustomPaint(
+            painter: SinPainter(_waveAnimation),
+            child: Container()
         );
+      },
+    );
   }
 }
 

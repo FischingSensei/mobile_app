@@ -13,14 +13,21 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+  bool _showLoginForm = false;
+  bool _showRegisterForm = false;
+
   void _login() {
     setState(() {
+      _showLoginForm = true;
+      _showRegisterForm = false;
       debugPrint("Login button");
     });
   }
 
   void _register() {
     setState(() {
+      _showLoginForm = false;
+      _showRegisterForm = true;
       debugPrint("Register");
     });
   }
@@ -33,18 +40,22 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const BackgroundAnimation(),
-              LoginButton(
-                onPressed: _login,
-                child: const Text("Login")
-              ),
+              //const BackgroundAnimation() [TODO] Sinwave animation,
+              if (!_showLoginForm) ...[
+                LoginButton(
+                  onPressed: _login,
+                  child: const Text("Login")
+                ),
+              ],
               const SizedBox(
                 height: 24,
               ),
-              LoginButton(
-                onPressed: _register,
-                child: const Text("Register")
-              )
+              if (!_showRegisterForm) ...[
+                LoginButton(
+                  onPressed: _register,
+                  child: const Text("Register")
+                )
+              ]
             ],
           ),
       )
