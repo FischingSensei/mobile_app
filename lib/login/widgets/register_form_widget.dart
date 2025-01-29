@@ -59,7 +59,7 @@ class RegisterForm extends StatelessWidget {
     firstname = ControlledTextField(labelText: 'Firstname');
     lastname = ControlledTextField(labelText: 'Lastname');
     email = ControlledTextField(labelText: 'Email');
-    password = ControlledTextField(labelText: 'Password');
+    password = ControlledTextField(labelText: 'Password', obscureText: true,);
   }
 
   String getFirstname() {
