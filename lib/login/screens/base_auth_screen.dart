@@ -1,4 +1,4 @@
-import 'package:fishing_sensei/login/service/login_service.dart';
+import 'package:fishing_sensei/login/service/auth_service.dart';
 import 'package:fishing_sensei/login/widgets/background_animation_wave_widget.dart';
 import 'package:fishing_sensei/login/widgets/login_button_widget.dart';
 import 'package:fishing_sensei/login/widgets/login_form_widget.dart';
@@ -6,19 +6,22 @@ import 'package:fishing_sensei/login/widgets/register_form_widget.dart';
 import 'package:fishing_sensei/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class AuthScreen extends StatefulWidget {
 
-  const LoginScreen({super.key});
+  const AuthScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _LoginScreenState();
+  State<StatefulWidget> createState() => _AuthScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _AuthScreenState extends State<AuthScreen> {
 
   bool _showLoginForm = false;
   bool _showRegisterForm = false;
   bool _sendButton = false;
+
+  late LoginForm loginForm;
+  late RegisterForm registerForm;
 
   void _login() {
     setState(() {
@@ -38,10 +41,12 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  void _sendData() async {
-    if (!_showLoginForm) {
-      await LoginService.fetchUsers();
+  void _sendAuthData() async {
+
+    if (_showLoginForm) {
+      return await AuthService.login(loginForm);
     }
+    return await AuthService.register(registerForm);
     setState(() {});
   }
 
@@ -67,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
               maxWidth: 100
           ),
           child: LoginButton(
-              onPressed: _sendData,
+              onPressed: _sendAuthData,
               child: const Text("Send")
           )
         )
@@ -97,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
             maxWidth: 200
           ),
           child: LoginButton(
-            onPressed: _sendData,
+            onPressed: _sendAuthData,
             child: const Text("Send")
           )
         )
@@ -110,29 +115,29 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: GradientBackground(
         child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              //const BackgroundAnimation() [TODO] Sinwave animation
-              if (_showLoginForm) const LoginForm(),
-              if (_showRegisterForm) const RegisterForm(),
-              if (!_showLoginForm) ...[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: _displayLoginButton(),
-                )
-              ],
-              const SizedBox(
-                height: 24,
-              ),
-              if (!_showRegisterForm) ...[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: _displayRegisterButton()
-                )
-              ],
-            ]
-          ),
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            //const BackgroundAnimation() [TODO] Sin wave animation
+            if (_showLoginForm) loginForm = LoginForm(),
+            if (_showRegisterForm) registerForm = RegisterForm(),
+            if (!_showLoginForm) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _displayLoginButton(),
+              )
+            ],
+            const SizedBox(
+              height: 24,
+            ),
+            if (!_showRegisterForm) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _displayRegisterButton()
+              )
+            ],
+          ]
+        ),
       )
     );
   }
