@@ -40,8 +40,9 @@ class AuthService {
 
     Uri uri = UrlBuilder().addPath("auth").uri();
 
-    Map<String, String> data = {
+    Map<String, String> bodyData = {
       "type": "Register",
+
       "firstname": form.getFirstname(),
       "lastname": form.getLastname(),
       "email": form.getEmail(),
@@ -53,9 +54,12 @@ class AuthService {
       headers: {
         "Content-Type": "application/json"
       },
-      body: jsonEncode(data),
+      body: jsonEncode(bodyData),
     );
+    final resData = jsonDecode(res.body);
 
-    print(res.body);
+    if (resData["code"] <= 0) {
+
+    }
   }
 }

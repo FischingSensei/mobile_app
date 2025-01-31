@@ -4,7 +4,7 @@ class ControlledTextField extends StatefulWidget {
   final String labelText;
   final bool obscureText;
 
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   ControlledTextField({
     super.key,

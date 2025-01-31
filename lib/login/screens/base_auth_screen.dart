@@ -1,6 +1,6 @@
 import 'package:fishing_sensei/login/service/auth_service.dart';
 import 'package:fishing_sensei/login/widgets/background_animation_wave_widget.dart';
-import 'package:fishing_sensei/login/widgets/login_button_widget.dart';
+import 'package:fishing_sensei/login/widgets/auth_button_widget.dart';
 import 'package:fishing_sensei/login/widgets/login_form_widget.dart';
 import 'package:fishing_sensei/login/widgets/register_form_widget.dart';
 import 'package:fishing_sensei/widgets/gradient_background.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {
 
-  const AuthScreen({super.key});
+  const AuthScreen({ super.key });
 
   @override
   State<StatefulWidget> createState() => _AuthScreenState();
@@ -47,7 +47,6 @@ class _AuthScreenState extends State<AuthScreen> {
       return await AuthService.login(loginForm);
     }
     return await AuthService.register(registerForm);
-    setState(() {});
   }
 
   List<Widget> _displayLoginButton() {
@@ -57,7 +56,7 @@ class _AuthScreenState extends State<AuthScreen> {
           minWidth: 100,
           maxWidth: 100
         ),
-        child: LoginButton(
+        child: AuthButton(
           onPressed: _login,
           child: const Text("Login")
         ),
@@ -69,11 +68,11 @@ class _AuthScreenState extends State<AuthScreen> {
         ConstrainedBox(
           constraints: const BoxConstraints(
               minWidth: 100,
-              maxWidth: 100
+              maxWidth: 200
           ),
-          child: LoginButton(
+          child: AuthButton(
               onPressed: _sendAuthData,
-              child: const Text("Send")
+              child: const Text("Register")
           )
         )
       ]
@@ -87,7 +86,7 @@ class _AuthScreenState extends State<AuthScreen> {
           minWidth: 100,
           maxWidth: 200
         ),
-        child: LoginButton(
+        child: AuthButton(
           onPressed: _register,
           child: const Text("Register")
         )
@@ -101,9 +100,9 @@ class _AuthScreenState extends State<AuthScreen> {
             minWidth: 100,
             maxWidth: 200
           ),
-          child: LoginButton(
+          child: AuthButton(
             onPressed: _sendAuthData,
-            child: const Text("Send")
+            child: const Text("Login")
           )
         )
       ]

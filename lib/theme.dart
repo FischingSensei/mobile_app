@@ -14,3 +14,18 @@ const ElevatedButtonThemeData loginButtonTheme = ElevatedButtonThemeData(
     backgroundColor: WidgetStatePropertyAll(Colors.grey),
   )
 );
+
+InputDecorationTheme formTheme = InputDecorationTheme(
+  focusColor: Colors.white,
+  filled: false,
+  hintStyle: TextStyle(color: Colors.white, fontSize: 1),
+  labelStyle: TextStyle(color: Colors.white),
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.grey, width: 1),
+    borderRadius: BorderRadius.circular(5),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.white),
+    borderRadius: BorderRadius.circular(20),
+  )
+);

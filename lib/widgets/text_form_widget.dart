@@ -6,10 +6,10 @@ class TextForm extends StatefulWidget {
   const TextForm({ super.key, required this.children });
 
   @override
-  State<StatefulWidget> createState() => _FormState();
+  State<StatefulWidget> createState() => _TextFormState();
 }
 
-class _FormState extends State<TextForm> {
+class _TextFormState extends State<TextForm> {
 
   @override
   Widget build(BuildContext context) {

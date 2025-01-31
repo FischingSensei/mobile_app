@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class LoginButton extends StatefulWidget {
+class AuthButton extends StatefulWidget {
 
   Function()? onPressed;
   final Widget? child;
 
-  LoginButton( { super.key, required this.onPressed, required this.child } );
+  AuthButton( { super.key, required this.onPressed, required this.child } );
 
   @override
-  State<LoginButton> createState() => _LoginButtonState();
+  State<AuthButton> createState() => _AuthButtonState();
 }
 
-class _LoginButtonState extends State<LoginButton>
+class _AuthButtonState extends State<AuthButton>
     with SingleTickerProviderStateMixin {
 
   late AnimationController _controller;

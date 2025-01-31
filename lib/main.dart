@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         textTheme: appTextTheme,
         elevatedButtonTheme: loginButtonTheme,
+        inputDecorationTheme: formTheme,
         useMaterial3: true,
       ),
       home: const AuthScreen(),

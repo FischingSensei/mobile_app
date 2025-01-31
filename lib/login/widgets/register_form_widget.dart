@@ -1,5 +1,5 @@
 import 'package:fishing_sensei/widgets/controlled_text_fields_widget.dart';
-import 'package:fishing_sensei/widgets/form_widget.dart';
+import 'package:fishing_sensei/widgets/text_form_widget.dart';
 import 'package:flutter/material.dart';
 
 //class RegisterForm extends StatelessWidget {
@@ -82,12 +82,47 @@ class RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextForm(
       children: [
-        lastname,
-        firstname,
-        email,
-        password
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: 155
+                ),
+                child: lastname,
+              )
+            ),
+            SizedBox(
+              width: 42,
+            ),
+            Flexible(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: 155
+                ),
+                child: firstname,
+              )
+            ),
+          ]
+        ),
+        FractionallySizedBox(
+          alignment: Alignment.centerLeft,
+          widthFactor: 0.85,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: email,
+          ),
+        ),
+        FractionallySizedBox(
+          alignment: Alignment.centerLeft,
+          widthFactor: 0.85,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: password,
+          ),
+        ),
       ],
     );
   }
-
 }
