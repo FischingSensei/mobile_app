@@ -16,7 +16,7 @@ class AuthService {
     print(res.body);
   }
 
-  static Future<void> login(LoginForm form) async {
+  static Future<bool> login(LoginForm form) async {
     Uri uri = UrlBuilder().addPath("auth").uri();
 
     Map<String, String> data = {
@@ -33,10 +33,12 @@ class AuthService {
       body: jsonEncode(data),
     );
 
+    final resData = jsonDecode(res.body);
+    return resData["code"] > 0;
     print(res.body);
   }
 
-  static Future<void> register(RegisterForm form) async {
+  static Future<bool> register(RegisterForm form) async {
 
     Uri uri = UrlBuilder().addPath("auth").uri();
 
@@ -56,10 +58,8 @@ class AuthService {
       },
       body: jsonEncode(bodyData),
     );
+
     final resData = jsonDecode(res.body);
-
-    if (resData["code"] <= 0) {
-
-    }
+    return resData["code"] > 0;
   }
 }

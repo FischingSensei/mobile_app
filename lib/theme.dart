@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+class AppTheme {
+  static final Color green = Color.fromARGB(255, 157, 226, 126);
+}
+
 const TextTheme appTextTheme = TextTheme(
   bodyMedium: TextStyle(
     color: Colors.white,

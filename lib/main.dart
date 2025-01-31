@@ -1,4 +1,4 @@
-import 'package:fishing_sensei/login/screens/base_auth_screen.dart';
+import 'package:fishing_sensei/login/screens/auth_screen.dart';
 import 'package:fishing_sensei/theme.dart';
 import 'package:fishing_sensei/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
