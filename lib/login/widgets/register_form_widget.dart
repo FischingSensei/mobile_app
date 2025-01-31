@@ -2,64 +2,20 @@ import 'package:fishing_sensei/widgets/controlled_text_fields_widget.dart';
 import 'package:fishing_sensei/widgets/text_form_widget.dart';
 import 'package:flutter/material.dart';
 
-//class RegisterForm extends StatelessWidget {
-//
-//  const RegisterForm({super.key});
-//
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return const Column(
-//      children: [
-//        Row(
-//          children: [
-//            Expanded(
-//              child: TextField(
-//                decoration: InputDecoration(
-//                    labelText: "Lastname"
-//                ),
-//              ),
-//            ),
-//            SizedBox(
-//              width: 42,
-//            ),
-//            Expanded(
-//              child: TextField(
-//                decoration: InputDecoration(
-//                    labelText: "Firstname"
-//                ),
-//              ),
-//            )
-//          ],
-//        ),
-//        TextField(
-//          decoration: InputDecoration(
-//              labelText: "Email or Username"
-//          ),
-//        ),
-//        TextField(
-//          decoration: InputDecoration(
-//            labelText: "Password",
-//          ),
-//          obscureText: true,
-//        )
-//      ],
-//    );
-//  }
-//}
-
 class RegisterForm extends StatelessWidget {
 
   late ControlledTextField firstname;
   late ControlledTextField lastname;
   late ControlledTextField email;
   late ControlledTextField password;
+  late String formName;
 
-  RegisterForm({super.key}) {
+  RegisterForm({ super.key, name }) {
     firstname = ControlledTextField(labelText: 'Firstname');
     lastname = ControlledTextField(labelText: 'Lastname');
     email = ControlledTextField(labelText: 'Email');
     password = ControlledTextField(labelText: 'Password', obscureText: true,);
+    formName = name;
   }
 
   String getFirstname() {
@@ -80,47 +36,51 @@ class RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextForm(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        Text(
+          formName,
+          style: TextStyle(fontSize: 15),
+        ),
+        SizedBox(height: 16), // Space between title and fields
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flexible(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: 155
+              child: FractionallySizedBox(
+                widthFactor: 0.6, // Each field takes 40% of the available width
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: 120,  // Minimum width for smaller screens
+                    maxWidth: 200,  // Maximum width for larger screens
+                  ),
+                  child: lastname,
                 ),
-                child: lastname,
-              )
+              ),
             ),
-            SizedBox(
-              width: 42,
-            ),
+            SizedBox(width: 16), // Space between fields
             Flexible(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: 155
+              child: FractionallySizedBox(
+                widthFactor: 0.6,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: 120,
+                    maxWidth: 200,
+                  ),
+                  child: firstname,
                 ),
-                child: firstname,
-              )
+              ),
             ),
-          ]
+          ],
         ),
         FractionallySizedBox(
-          alignment: Alignment.centerLeft,
-          widthFactor: 0.85,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: email,
-          ),
+          widthFactor: 0.85, // Email takes 85% of the available width
+          child: email,
         ),
         FractionallySizedBox(
-          alignment: Alignment.centerLeft,
           widthFactor: 0.85,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: password,
-          ),
+          child: password,
         ),
       ],
     );

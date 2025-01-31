@@ -6,10 +6,12 @@ class LoginForm extends StatelessWidget {
 
   late ControlledTextField email;
   late ControlledTextField password;
+  late String formName;
 
-  LoginForm({ super.key }) {
+  LoginForm({ super.key, name }) {
       email = ControlledTextField(labelText: 'Email or username');
       password = ControlledTextField(labelText: 'Password', obscureText: true,);
+      formName = name;
   }
 
   String getEmail() {
@@ -24,21 +26,25 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextForm(
       children: [
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            formName,
+            style: TextStyle(
+              fontSize: 15
+            ),
+          ),
+        ),
+        const SizedBox(height: 16,),
         FractionallySizedBox(
           alignment: Alignment.centerLeft,
           widthFactor: 0.85,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: email,
-          ),
+          child: email,
         ),
         FractionallySizedBox(
           alignment: Alignment.centerLeft,
           widthFactor: 0.85,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: password,
-          ),
+          child: password,
         ),
       ]
     );

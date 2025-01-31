@@ -62,13 +62,13 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
       const SizedBox(
-        width: 24,
+        width: 10,
       ),
       if (_sendButton) ...[
         ConstrainedBox(
           constraints: const BoxConstraints(
-              minWidth: 100,
-              maxWidth: 200
+            minWidth: 100,
+            maxWidth: 200
           ),
           child: AuthButton(
               onPressed: _sendAuthData,
@@ -92,7 +92,7 @@ class _AuthScreenState extends State<AuthScreen> {
         )
       ),
       const SizedBox(
-        width: 24,
+        width: 10,
       ),
       if (_sendButton) ...[
         ConstrainedBox(
@@ -114,12 +114,11 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
       body: GradientBackground(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //const BackgroundAnimation() [TODO] Sin wave animation
-            if (_showLoginForm) loginForm = LoginForm(),
-            if (_showRegisterForm) registerForm = RegisterForm(),
+            if (_showLoginForm) loginForm = LoginForm(name: 'Login',),
+            if (_showRegisterForm) registerForm = RegisterForm(name: 'Register',),
             if (!_showLoginForm) ...[
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -127,17 +126,17 @@ class _AuthScreenState extends State<AuthScreen> {
               )
             ],
             const SizedBox(
-              height: 24,
+              height: 42,
             ),
             if (!_showRegisterForm) ...[
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: _displayRegisterButton()
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _displayRegisterButton()
               )
             ],
           ]
-        ),
-      )
+          ),
+        )
     );
   }
 }
