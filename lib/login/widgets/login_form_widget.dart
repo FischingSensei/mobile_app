@@ -9,7 +9,7 @@ class LoginForm extends StatefulWidget {
   late String formName;
 
   LoginForm({ super.key, name }) {
-      email = ControlledTextField(labelText: 'Email or username');
+      email = ControlledTextField(labelText: 'Email');
       password = ControlledTextField(labelText: 'Password', obscureText: true,);
       formName = name;
   }

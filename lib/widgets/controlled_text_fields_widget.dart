@@ -40,6 +40,10 @@ class _ControlledTextFieldState extends State<ControlledTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
+        cursorColor: Colors.grey,
+        style: TextStyle(
+          color: Colors.white
+        ),
         controller: widget._controller,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
