@@ -34,6 +34,21 @@ class RegisterForm extends StatelessWidget {
     return password.text();
   }
 
+  Widget _NameWidget(Widget name) {
+    return Flexible(
+      child: FractionallySizedBox(
+        widthFactor: 0.6, // Each field takes 40% of the available width
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: 120,  // Minimum width for smaller screens
+            maxWidth: 200,  // Maximum width for larger screens
+          ),
+          child: name,
+        ),
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,31 +62,14 @@ class RegisterForm extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Flexible(
-              child: FractionallySizedBox(
-                widthFactor: 0.6, // Each field takes 40% of the available width
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 120,  // Minimum width for smaller screens
-                    maxWidth: 200,  // Maximum width for larger screens
-                  ),
-                  child: lastname,
-                ),
-              ),
-            ),
+
+            // Lastname Flexible
+            _NameWidget(lastname),
+
             SizedBox(width: 16), // Space between fields
-            Flexible(
-              child: FractionallySizedBox(
-                widthFactor: 0.6,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 120,
-                    maxWidth: 200,
-                  ),
-                  child: firstname,
-                ),
-              ),
-            ),
+
+            // Firstname Flexible
+            _NameWidget(firstname)
           ],
         ),
         FractionallySizedBox(
