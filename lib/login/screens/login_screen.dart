@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:fishing_sensei/login/screens/register_screen.dart';
+import 'package:fishing_sensei/login/service/dto/auth_response.dart';
 import 'package:flutter/material.dart';
 
 import '../../home/screens/home_screen.dart';
@@ -10,39 +11,72 @@ import '../service/auth_service.dart';
 import '../widgets/auth_button_widget.dart';
 import '../widgets/login_form_widget.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
 
-  late LoginForm loginForm;
 
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  late LoginForm loginForm;
+
+  bool _isRequesting = false;
+  AuthResponse _response = AuthResponse(false, "");
 
   Future<bool> _sendAuthData(BuildContext context) async {
-    bool success = await AuthService.login(loginForm);
 
-    if (success) {
+    setState(() {
+      _isRequesting = true;
+    });
+
+    _response = await AuthService.login(loginForm);
+
+    if (_response.success) {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()));
       return true;
     }
+
+    setState(() {
+      _isRequesting = false;
+    });
     return false;
   }
 
+  Widget _handleRequest(BuildContext context) {
+    return (!_isRequesting) ? AuthButton(
+        onPressed: () => _sendAuthData(context),
+        child: const Text("Login")
+    ) : CircularProgressIndicator(
+      color: AppTheme.green,
+    );
+  }
+
+  Widget _displayErrorText() {
+    return (_response.msg.isEmpty && _response.success) ? SizedBox.shrink() :
+        Text(
+          _response.msg,
+          style: TextStyle(
+            color: AppTheme.softYellow
+          ),
+        );
+  }
 
   List<Widget> _displayButton(BuildContext context) {
     return [
       Column(
         children: [
+          _displayErrorText(),
           ConstrainedBox(
             constraints: const BoxConstraints(
-                minWidth: 100,
+                minWidth: 10,
                 maxWidth: 200
             ),
-            child: AuthButton(
-              onPressed: () => _sendAuthData(context),
-              child: const Text("Login")
-            )
+            child: _handleRequest(context)
           ),
           Row(
             children: [

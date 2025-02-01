@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static final Color green = Color.fromARGB(255, 157, 226, 126);
+  static final Color softYellow = Color.fromARGB(255, 249, 248, 113);
 }
 
 const TextTheme appTextTheme = TextTheme(

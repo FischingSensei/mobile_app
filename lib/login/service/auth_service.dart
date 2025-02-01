@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fishing_sensei/login/service/dto/auth_response.dart';
 import 'package:fishing_sensei/login/widgets/login_form_widget.dart';
 import 'package:fishing_sensei/login/widgets/register_form_widget.dart';
 import 'package:fishing_sensei/url_builder.dart';
@@ -16,7 +17,7 @@ class AuthService {
     print(res.body);
   }
 
-  static Future<bool> login(LoginForm form) async {
+  static Future<AuthResponse> login(LoginForm form) async {
     Uri uri = UrlBuilder().addPath("auth").uri();
 
     Map<String, String> data = {
@@ -34,8 +35,7 @@ class AuthService {
     );
 
     final resData = jsonDecode(res.body);
-    return resData["code"] > 0;
-    print(res.body);
+    return AuthResponse(resData["code"] > 0, resData["msg"]);
   }
 
   static Future<bool> register(RegisterForm form) async {
