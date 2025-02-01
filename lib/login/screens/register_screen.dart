@@ -1,45 +1,30 @@
 import 'package:fishing_sensei/home/screens/home_screen.dart';
+import 'package:fishing_sensei/login/screens/abstract_form_screen.dart';
 import 'package:fishing_sensei/login/screens/login_screen.dart';
 import 'package:fishing_sensei/login/widgets/register_form_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme.dart';
 import '../../widgets/gradient_background.dart';
-import '../service/auth_service.dart';
-import '../widgets/auth_button_widget.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends AFormScreen {
 
+
+  const RegisterScreen({super.key, required super.formType });
+
+  @override
+  State<AFormScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends AFormScreenState {
   late RegisterForm registerForm;
-
-  RegisterScreen({super.key});
-
-  Future<bool> _sendAuthData(BuildContext context) async {
-    bool success = await AuthService.register(registerForm);
-
-    if (success) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()));
-      return true;
-    }
-    return false;
-  }
 
   List<Widget> _displayButton(BuildContext context) {
     return [
       Column(
         children: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(
-                minWidth: 100,
-                maxWidth: 200
-            ),
-            child: AuthButton(
-              onPressed: () => _sendAuthData(context),
-              child: const Text("Register")
-            )
-          ),
+          // Append element
+          ...super.baseFormScreenWidgetList(registerForm),
           Row(
             children: [
               Text("You already have an account ? "),
@@ -52,7 +37,8 @@ class RegisterScreen extends StatelessWidget {
                   context,
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginScreen())
+                    MaterialPageRoute(
+                        builder: (context) => LoginScreen(formType: 'Login',))
                   )
                 },
                 child: Text(

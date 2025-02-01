@@ -1,8 +1,9 @@
+import 'package:fishing_sensei/login/widgets/auth_form.dart';
 import 'package:fishing_sensei/widgets/controlled_text_fields_widget.dart';
 import 'package:fishing_sensei/widgets/text_form_widget.dart';
 import 'package:flutter/material.dart';
 
-class RegisterForm extends StatefulWidget {
+class RegisterForm extends AAuthForm {
 
   late ControlledTextField firstname;
   late ControlledTextField lastname;

@@ -36,7 +36,8 @@ class _AuthScreenState extends State<AuthScreen> {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginScreen())
+                    MaterialPageRoute(
+                        builder: (context) => LoginScreen(formType: "Login"))
                   );
                 },
                 child: Text('Login')
@@ -52,7 +53,8 @@ class _AuthScreenState extends State<AuthScreen> {
                 onPressed: () {
                   Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => RegisterScreen())
+                      MaterialPageRoute(
+                          builder: (context) => RegisterScreen(formType: 'Register',))
                   );
                 },
                 child: Text('Register')

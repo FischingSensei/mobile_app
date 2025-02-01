@@ -19,11 +19,17 @@ class AuthService {
 
   static Future<AuthResponse> login(LoginForm form) async {
     Uri uri = UrlBuilder().addPath("auth").uri();
+    final String email = form.getEmail();
+    final String password = form.getPassword();
+
+    if (email.isEmpty || password.isEmpty) {
+      return AuthResponse(false, "Email or password is empty !");
+    }
 
     Map<String, String> data = {
       "type": "Login",
-      "email": form.getEmail(),
-      "password": form.getPassword()
+      "email": email,
+      "password": password
     };
 
     final res = await http.post(
@@ -38,17 +44,28 @@ class AuthService {
     return AuthResponse(resData["code"] > 0, resData["msg"]);
   }
 
-  static Future<bool> register(RegisterForm form) async {
+  static Future<AuthResponse> register(RegisterForm form) async {
 
-    Uri uri = UrlBuilder().addPath("auth").uri();
+    final Uri uri = UrlBuilder().addPath("auth").uri();
+    final String email = form.getEmail();
+    final String password = form.getPassword();
+    final String firstname = form.getFirstname();
+    final String lastname = form.getLastname();
+
+    if (email.isEmpty ||
+        password.isEmpty ||
+        firstname.isEmpty ||
+        lastname.isEmpty) {
+      return AuthResponse(false, "All field must be filled !");
+    }
 
     Map<String, String> bodyData = {
       "type": "Register",
 
-      "firstname": form.getFirstname(),
-      "lastname": form.getLastname(),
-      "email": form.getEmail(),
-      "password": form.getPassword()
+      "firstname": firstname,
+      "lastname": lastname,
+      "email": email,
+      "password": password
     };
 
     final res = await http.post(
@@ -58,8 +75,7 @@ class AuthService {
       },
       body: jsonEncode(bodyData),
     );
-
     final resData = jsonDecode(res.body);
-    return resData["code"] > 0;
+    return AuthResponse(resData["code"] > 0, resData["msg"]);
   }
 }
