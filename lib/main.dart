@@ -1,8 +1,13 @@
+import 'package:fishing_sensei/login/screens/auth_screen.dart';
 import 'package:fishing_sensei/theme.dart';
 import 'package:fishing_sensei/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -17,9 +22,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         textTheme: appTextTheme,
+        elevatedButtonTheme: loginButtonTheme,
+        inputDecorationTheme: formTheme,
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const AuthScreen(),
     );
   }
 }
