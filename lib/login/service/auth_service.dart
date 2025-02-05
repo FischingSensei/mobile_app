@@ -38,6 +38,11 @@ class AuthService {
         "Content-Type": "application/json"
       },
       body: jsonEncode(data),
+    ).timeout(
+      const Duration(seconds: 30),
+      onTimeout: () => http.Response('{'
+          '"code": -1, "msg": "Connection timeout"'
+          '}', 408)
     );
 
     final resData = jsonDecode(res.body);
@@ -74,7 +79,13 @@ class AuthService {
         "Content-Type": "application/json"
       },
       body: jsonEncode(bodyData),
+    ).timeout(
+      const Duration(seconds: 30),
+      onTimeout: () => http.Response('{'
+        '"code": -1, "msg": "Connection timeout"'
+      '}', 408)
     );
+
     final resData = jsonDecode(res.body);
     return AuthResponse(resData["code"] > 0, resData["msg"]);
   }
