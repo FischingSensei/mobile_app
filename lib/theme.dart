@@ -16,7 +16,7 @@ const TextTheme appTextTheme = TextTheme(
 
 const ElevatedButtonThemeData loginButtonTheme = ElevatedButtonThemeData(
   style: ButtonStyle(
-    backgroundColor: WidgetStatePropertyAll(Colors.grey),
+    backgroundColor: WidgetStatePropertyAll(Colors.white)
   )
 );
 

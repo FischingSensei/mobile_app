@@ -1,9 +1,6 @@
-import 'dart:collection';
-
 import 'package:fishing_sensei/login/widgets/auth_form.dart';
 import 'package:fishing_sensei/login/widgets/login_form_widget.dart';
 import 'package:fishing_sensei/login/widgets/register_form_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../home/screens/home_screen.dart';
@@ -55,18 +52,23 @@ abstract class AFormScreenState extends State<AFormScreen> {
 
   Widget displayErrorText() {
     return (response.msg.isEmpty && response.success) ? SizedBox.shrink() :
-    Text(
-      response.msg,
-      style: TextStyle(
-          color: AppTheme.softYellow
-      ),
-    );
+      Text(
+        response.msg,
+        style: TextStyle(
+            color: AppTheme.softYellow
+        ),
+      );
   }
 
   Widget handleRequest(BuildContext context, AAuthForm form) {
     return (!isRequesting) ? AuthButton(
         onPressed: () => requestApi(context, form),
-        child: Text(widget.formType)
+        child: Text(
+          widget.formType,
+          style: TextStyle(
+            color: Colors.black
+          ),
+        )
     ) : CircularProgressIndicator(
       color: AppTheme.green,
     );

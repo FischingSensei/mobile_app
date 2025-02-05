@@ -43,7 +43,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 child: Text('Login')
               ),
             ),
-            SizedBox(height: 16,),
+            //SizedBox(height: 16,),
             ConstrainedBox(
               constraints: BoxConstraints(
               minWidth: 100,
@@ -52,9 +52,9 @@ class _AuthScreenState extends State<AuthScreen> {
               child: AuthButton(
                 onPressed: () {
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => RegisterScreen(formType: 'Register',))
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RegisterScreen(formType: 'Register',))
                   );
                 },
                 child: Text('Register')

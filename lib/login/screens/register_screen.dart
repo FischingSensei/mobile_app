@@ -22,10 +22,12 @@ class _RegisterScreenState extends AFormScreenState {
   List<Widget> _displayButton(BuildContext context) {
     return [
       Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Append element
           ...super.baseFormScreenWidgetList(registerForm),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("You already have an account ? "),
               TextButton(
@@ -66,9 +68,6 @@ class _RegisterScreenState extends AFormScreenState {
             children: [
               //const BackgroundAnimation() [TODO] Sin wave animation
               registerForm = RegisterForm(name: 'Register',),
-              const SizedBox(
-                height: 42,
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: _displayButton(context)

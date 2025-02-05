@@ -19,7 +19,6 @@ class LoginScreen extends AFormScreen {
 class _LoginScreenState extends AFormScreenState {
   late LoginForm loginForm;
 
-
   List<Widget> _displayButton(BuildContext context) {
     return [
       Column(
@@ -27,7 +26,7 @@ class _LoginScreenState extends AFormScreenState {
           ...super.baseFormScreenWidgetList(loginForm),
           Row(
             children: [
-              Text("Don't have an account? Register "),
+              Text("Don't have an account? "),
               TextButton(
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
@@ -41,7 +40,7 @@ class _LoginScreenState extends AFormScreenState {
                   )
                 },
                 child: Text(
-                  "here !",
+                  "Register here !",
                   style: TextStyle(
                     color: AppTheme.green,
                     decoration: TextDecoration.underline,
@@ -65,9 +64,6 @@ class _LoginScreenState extends AFormScreenState {
           children: [
             //const BackgroundAnimation() [TODO] Sin wave animation
             loginForm = LoginForm(name: 'Login',),
-            const SizedBox(
-              height: 42,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: _displayButton(context)

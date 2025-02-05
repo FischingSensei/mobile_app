@@ -58,6 +58,9 @@ class _AuthButtonState extends State<AuthButton>
       child: ScaleTransition(
         scale: _scaleAnimation,
         child: ElevatedButton(
+          style: ButtonStyle(
+            alignment: Alignment.center,
+          ),
           onPressed: widget.onPressed,
           child: widget.child
         )
