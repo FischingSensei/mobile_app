@@ -14,6 +14,16 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({ super.key });
 
+  // test
+  Widget test() {
+    return Scaffold(
+      body: <Widget>[
+       Container(),
+       Row()
+      ][0],
+    );
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
