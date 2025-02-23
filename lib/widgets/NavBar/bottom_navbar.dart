@@ -39,7 +39,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 IconButton(
                   iconSize: 30,
                   onPressed: () {
-                    widget.onClick(i);
+                    setState(() {
+                      widget.onClick(i);
+                    });
                   },
                   style: IconButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -51,13 +53,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     color: Colors.white,
                   ),
                 ),
-                if (i < 2)
+                if (i < 2) ...[
                   const VerticalDivider(
                     color: Colors.white,
                     endIndent: 10,
-                    indent: 10,
-                    thickness: 1,
+                      indent: 10,
+                      thickness: 1,
                   )
+                ]
               ],
             ],
           ),

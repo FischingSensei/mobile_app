@@ -1,3 +1,4 @@
+import 'package:fishing_sensei/home/screens/map_screen.dart';
 import 'package:fishing_sensei/home/screens/spot_screen.dart';
 import 'package:fishing_sensei/widgets/NavBar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,9 @@ class _HomeScreenState extends State<HomeScreen> {
   late int selectedScreen = 0;
 
   final List<Widget> Screen = [
+    MapScreen(),
     SpotScreen(),
-    SpotScreen(),
-    SpotScreen(),
+    MapScreen(),
   ];
 
   @override
@@ -28,9 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
       ),
-      body: Container(
-        child: Text("Hello world", style: TextStyle(color: Colors.red),),
-      ),
+      body: Screen[selectedScreen]
     );
   }
 }
