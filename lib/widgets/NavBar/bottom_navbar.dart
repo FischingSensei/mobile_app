@@ -1,3 +1,4 @@
+import 'package:fishing_sensei/theme.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -25,8 +26,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               .sizeOf(context)
               .height * 0.06,
           decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Colors.green,
+            gradient: backgroundGradient,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),

@@ -34,3 +34,14 @@ InputDecorationTheme formTheme = InputDecorationTheme(
     borderRadius: BorderRadius.circular(20),
   )
 );
+
+const LinearGradient backgroundGradient = LinearGradient(
+  colors: [
+    // start color
+    Color.fromARGB(255, 16, 91, 122),
+    // end color
+    Color.fromARGB(255, 75, 159, 162)
+  ],
+  begin: Alignment.bottomLeft,
+  end: Alignment.topRight,
+);

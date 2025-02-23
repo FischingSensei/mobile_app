@@ -1,3 +1,4 @@
+import 'package:fishing_sensei/theme.dart';
 import 'package:flutter/cupertino.dart';
 
 class GradientBackground extends StatelessWidget {
@@ -13,16 +14,7 @@ class GradientBackground extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              // start color
-              Color.fromARGB(255, 16, 91, 122),
-              // end color
-              Color.fromARGB(255, 75, 159, 162)
-            ],
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-          ),
+          gradient: backgroundGradient,
         ),
         child: child
     );
