@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AuthButton extends StatefulWidget {
-
   Function()? onPressed;
   final Widget? child;
 
-  AuthButton( { super.key, required this.onPressed, required this.child } );
+  AuthButton({super.key, required this.onPressed, required this.child});
 
   @override
   State<AuthButton> createState() => _AuthButtonState();
@@ -13,7 +12,6 @@ class AuthButton extends StatefulWidget {
 
 class _AuthButtonState extends State<AuthButton>
     with SingleTickerProviderStateMixin {
-
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
@@ -43,28 +41,25 @@ class _AuthButtonState extends State<AuthButton>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) {
-        _controller.forward();
-      },
-      onTapUp: (_) {
-        _controller.reverse(); // Revert animation when the button is released
-        if (widget.onPressed != null) {
-          widget.onPressed!(); // Trigger the onPressed callback
-        }
-      },
-      onTapCancel: () {
-        _controller.reverse();
-      },
-      child: ScaleTransition(
-        scale: _scaleAnimation,
-        child: ElevatedButton(
-          style: ButtonStyle(
-            alignment: Alignment.center,
-          ),
-          onPressed: widget.onPressed,
-          child: widget.child
-        )
-      )
-    );
+        onTapDown: (_) {
+          _controller.forward();
+        },
+        onTapUp: (_) {
+          _controller.reverse(); // Revert animation when the button is released
+          if (widget.onPressed != null) {
+            widget.onPressed!(); // Trigger the onPressed callback
+          }
+        },
+        onTapCancel: () {
+          _controller.reverse();
+        },
+        child: ScaleTransition(
+            scale: _scaleAnimation,
+            child: ElevatedButton(
+                style: ButtonStyle(
+                  alignment: Alignment.center,
+                ),
+                onPressed: widget.onPressed,
+                child: widget.child)));
   }
 }

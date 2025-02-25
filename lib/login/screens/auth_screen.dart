@@ -7,62 +7,54 @@ import 'package:fishing_sensei/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {
-
-  const AuthScreen({ super.key });
+  const AuthScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => _AuthScreenState();
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-
   late LoginForm loginForm;
   late RegisterForm registerForm;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GradientBackground(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            //const BackgroundAnimation() [TODO] Sin wave animation
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                minWidth: 100,
-                maxWidth: 200
-              ),
-              child: AuthButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
+        body: GradientBackground(
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        //const BackgroundAnimation() [TODO] Sin wave animation
+        ConstrainedBox(
+          constraints: BoxConstraints(minWidth: 100, maxWidth: 200),
+          child: AuthButton(
+              onPressed: () {
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => LoginScreen(formType: "Login"))
-                  );
-                },
-                child: Text('Login')
-              ),
-            ),
-            //SizedBox(height: 16,),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-              minWidth: 100,
-              maxWidth: 200
-              ),
-              child: AuthButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => RegisterScreen(formType: 'Register',))
-                  );
-                },
-                child: Text('Register')
-              ),
-            ),
-          ]
+                        builder: (context) => LoginScreen(formType: "Login")));
+              },
+              child: Text(
+                'Login',
+                style: TextStyle(color: Colors.black),
+              )),
         ),
-      )
-    );
+        //SizedBox(height: 16,),
+        ConstrainedBox(
+          constraints: BoxConstraints(minWidth: 100, maxWidth: 200),
+          child: AuthButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RegisterScreen(
+                              formType: 'Register',
+                            )));
+              },
+              child: Text(
+                'Register',
+                style: TextStyle(color: Colors.black),
+              )),
+        ),
+      ]),
+    ));
   }
 }

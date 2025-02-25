@@ -12,8 +12,10 @@ const TextTheme appTextTheme = TextTheme(
   bodySmall: TextStyle(color: Colors.black),
 );
 
-const ElevatedButtonThemeData loginButtonTheme = ElevatedButtonThemeData(
-    style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.white)));
+ElevatedButtonThemeData loginButtonTheme = ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(color: Colors.black)));
 
 InputDecorationTheme formTheme = InputDecorationTheme(
     focusColor: Colors.white,

@@ -17,11 +17,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: MediaQuery.sizeOf(context).height * 0.06,
+        height: MediaQuery.sizeOf(context).height * 0.075,
         child: Center(
           child: Container(
-              width: MediaQuery.sizeOf(context).width * 0.6,
-              height: MediaQuery.sizeOf(context).height * 0.06,
+              width: MediaQuery.sizeOf(context).width * 0.7,
+              height: MediaQuery.sizeOf(context).height * 0.075,
               decoration: navbarDecoration,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +31,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         AnimatedContainer(
-                          duration: Duration(milliseconds: 100),
+                          duration: Duration(milliseconds: 200),
                           curve: Curves.easeInOut,
                           width: selected[i].$2,
                           child: SizedBox(
