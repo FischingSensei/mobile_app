@@ -22,15 +22,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         child: Container(
           width: MediaQuery.sizeOf(context).width * 0.6,
           height: MediaQuery.sizeOf(context).height * 0.06,
-          decoration: BoxDecoration(
-            gradient: backgroundGradient,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-          ),
+          decoration: navbarDecoration,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NavBarButton extends StatelessWidget {
-  VoidCallback onPressed;
-  Icon icon;
+  final VoidCallback onPressed;
+  final Icon icon;
 
-  NavBarButton({required this.onPressed, required this.icon});
+  const NavBarButton({required this.onPressed, required this.icon});
 
   @override
   Widget build(BuildContext context) {
